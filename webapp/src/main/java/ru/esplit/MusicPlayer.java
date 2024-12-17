@@ -1,7 +1,10 @@
 package ru.esplit;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MusicPlayer {
-    private Music music;
+    private List<Music> musiclist = new ArrayList<>();
 
     private String name;
     private int volume;

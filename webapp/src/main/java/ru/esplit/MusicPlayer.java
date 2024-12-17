@@ -2,39 +2,37 @@ package ru.esplit;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 public class MusicPlayer {
-    private List<Music> musicList = new ArrayList<>();
 
     private String name;
-    private int volume;
-
     
-    public MusicPlayer() {}
+    private int volume;
+    List<Music> listOfMusic = new ArrayList<>();
 
-    public void playMusicList() {
-        for(Music music : musicList) {
-            System.out.println("Playing: " + music.getSong());
-        }
+    public MusicPlayer(List<Music> listOfMusic) {
+        this.listOfMusic = listOfMusic;
     }
 
     public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        return name;
     }
 
     public int getVolume() {
-        return this.volume;
+        return volume;
     }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
+    public String playMusic() {
+        Random rand = new Random();
+        int randomOfNumberForGenre = rand.nextInt(listOfMusic.size());
+        int randomOfNumberForTrack = rand.nextInt(3);
 
-    public void setMusicList(List<Music> musicList) {
-        this.musicList = musicList;
+        return listOfMusic.get(randomOfNumberForGenre).getSong().get(randomOfNumberForTrack);
     }
 }
